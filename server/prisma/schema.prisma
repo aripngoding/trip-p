@@ -1,0 +1,64 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Trip {
+  id           String         @id @default(uuid())
+  title        String
+  destination  String
+  startDate    String
+  endDate      String
+  budget       Float
+  description  String?
+  coverImage   String
+  status       String         @default("upcoming") // "upcoming", "ongoing", "completed"
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  itinerary    ItineraryDay[]
+  expenses     Expense[]
+  packingList  PackingItem[]
+}
+
+model ItineraryDay {
+  id         String     @id @default(uuid())
+  tripId     String
+  trip       Trip       @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  dayNumber  Int
+  date       String
+  activities Activity[]
+}
+
+model Activity {
+  id             String       @id @default(uuid())
+  itineraryDayId String
+  itineraryDay   ItineraryDay @relation(fields: [itineraryDayId], references: [id], onDelete: Cascade)
+  time           String
+  title          String
+  category       String       // "transport", "food", "sightseeing", "hotel", "activity", "other"
+  cost           Float        @default(0)
+  notes          String?
+}
+
+model Expense {
+  id        String   @id @default(uuid())
+  tripId    String
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  title     String
+  amount    Float
+  category  String   // "accommodation", "transport", "food", "activities", "shopping", "other"
+  date      String
+}
+
+model PackingItem {
+  id        String   @id @default(uuid())
+  tripId    String
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  name      String
+  category  String   // "documents", "clothing", "electronics", "toiletries", "medication", "other"
+  packed    Boolean  @default(false)
+}
