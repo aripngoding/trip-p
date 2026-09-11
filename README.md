@@ -108,4 +108,5 @@ trip/
 ---
 
 ## 📄 Lisensi
-Hak Cipta © 2026 **TripFlow App**. Dibuat untuk manajemen perjalanan yang lebih mudah dan menyenangkan.
+Hak Cipta © 2026 **TripFlow App** oleh [@aripngoding](https://github.com/aripngoding). Hak Cipta Dilindungi Undang-Undang.
+

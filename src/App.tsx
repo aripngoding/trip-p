@@ -152,7 +152,7 @@ function App() {
       {/* Beautiful Glassmorphic Footer */}
       <footer style={styles.footer}>
         <div style={styles.footerContent}>
-          <span style={styles.footerText}>© 2026 TripFlow App. Dibuat dengan presisi oleh Antigravity.</span>
+          <span style={styles.footerText}>© 2026 TripFlow App. Dibuat oleh <a href="https://github.com/aripngoding" target="_blank" rel="noopener noreferrer" style={{ color: '#00f2fe', textDecoration: 'none' }}>aripngoding</a>.</span>
           <span style={styles.footerTech}>React • TypeScript • Vite • Glassmorphism CSS</span>
         </div>
       </footer>
